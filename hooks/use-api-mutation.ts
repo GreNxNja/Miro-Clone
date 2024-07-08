@@ -5,20 +5,17 @@ export const useApiMutation = (mutationFunction: any) => {
     const [pending, setPending] = useState(false);
     const apiMutation = useMutation(mutationFunction);
 
-    const mutate = (payload: any) => {
+    const mutate = async (payload: any) => {
         setPending(true);
-        return apiMutation(payload)
-            .finally(() => setPending(false))
+        return await apiMutation(payload)
             .then((result) => {
                 return result;
             })
             .catch((error) => {
                 throw error;
-            });
+            })
+            .finally(() => setPending(false));
     };
 
-    return {
-        mutate,
-        pending,
-    };
+    return { mutate, pending };
 };

@@ -1,85 +1,113 @@
-## Mirofy
+# Miro Clone
 
-### Overview
+This project is a clone of the popular Miro whiteboard application, built using modern web technologies and tools. Follow the tutorial by [Code with Antonio](https://www.youtube.com/@codewithantonio) to create your own collaborative whiteboard app.
 
-Mirofy is a collaborative, real-time whiteboard application inspired by Miro, designed to facilitate seamless teamwork and idea visualization. It offers a comprehensive set of features including real-time database integration, a variety of drawing tools, and advanced collaboration capabilities.
+|<img width="1439" alt="image" src="https://github.com/jatin1510/miro-clone/assets/72184476/02756b9e-7a33-4bf6-933e-d4119d16153d">|
+|-|
+|<img width="1440" alt="image" src="https://github.com/jatin1510/miro-clone/assets/72184476/3c038d07-457e-44da-8019-15330ca4ecc8">|
+|<img width="1440" alt="image" src="https://github.com/jatin1510/miro-clone/assets/72184476/8df60147-bb35-4a2b-aaa7-73161cd9d1b5">|
 
-### Key Features
+## Tech Stack
 
-- **Whiteboard Creation:** Start with a blank canvas and unleash your creativity.
-- **Drawing Tools:** Utilize a range of tools including shapes (Rectangles and Ellipses), sticky notes, and freehand pencil drawing.
-- **Toolbar:** Access a versatile toolbar containing Text, Shapes, Sticky Notes, and Pencil tools for easy navigation and manipulation.
-- **Layering Functionality:** Organize your elements with layering capabilities for better management and visualization.
-- **Coloring System:** Customize your creations with a rich palette of colors.
-- **Undo & Redo Functionality:** Correct mistakes and refine your work with the ability to undo and redo actions.
-- **Keyboard Shortcuts:** Speed up your workflow with convenient keyboard shortcuts.
-- **Real-time Collaboration:** Collaborate with team members in real-time, allowing simultaneous editing and feedback.
-- **Real-time Database:** Ensure data consistency and synchronization across all users with real-time database integration.
-- **Authentication & Organization:** Securely access the platform with authentication features provided by Clerk, including organization and invitation functionalities.
-- **Favoriting:** Mark important boards or elements for quick access with favoriting functionality.
-- **Next.js 14 Framework:** Built on the latest Next.js framework, ensuring high performance and scalability.
-- **Styling:** Enhanced with TailwindCSS & ShadcnUI styling for a sleek and modern user interface.
+- **Framework**: [Next.js](https://nextjs.org/)
+- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Backend**: [convex](https://www.convex.dev/)
+- **Real-time Collaboration**: [liveblocks](https://liveblocks.io/)
 
-### Technologies Used
+## Deployment
 
-- **Frontend:**
-  - Next.js
-  - React
-  - Tailwind CSS
-- **Backend:**
-  - Clerk (authentication)
-- **Real-Time Collaboration:**
-  - Convex (real-time collaboration)
-  - Liveblocks (real-time updates)
+The application is deployed on Vercel. Check it out [here](https://miro-clone-chi.vercel.app).
+
+## Getting Started
+
+Follow these instructions to set up the project locally.
+
+### Prerequisites
+
+Make sure you have the following installed on your system:
+
+- Node.js (>= 14.x)
+- npm
 
 ### Installation
 
-1. **Install dependencies:**
+1. **Clone the repository:**
 
-```bash
-cd Mirofy
-npm install
-```
+    ```sh
+    git clone https://github.com/jatin1510/miro-clone
+    cd miro-clone
+    ```
 
-### Deployment used by 
-```bash 
-npx convex dev
-```
-**Please set up the following configurations in your local `.env` file:**
+2. **Install dependencies:**
 
-```bash
-CONVEX_DEPLOYMENT=dev # team: [your_team_name]
-NEXT_PUBLIC_CONVEX_URL=replace_this_with_your_own_link
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=[user_clerk_publishable_key]
-CLERK_SECRET_KEY=[user_clerk_secret_key]
-```
+    ```sh
+    npm install
+    ```
 
-### Usage
+3. **Configure environment variables:**
 
-1. **Run the development server:**
+    Create a `.env.local` file in the root directory and add your configuration variables. You can explore the `.env.example` file for more information.
 
-```bash
-npm run dev
-```
+4. **Clerk Setup**
+   - Enable Organization from the "Organization settings"
+   - Add JWT Template named "convex" <img width="792" alt="image" src="https://github.com/jatin1510/miro-clone/assets/72184476/43e12f31-aa7c-4a51-b8f9-ffef2846f621">
+   - Make sure to have `org_id` and `org_role` inside **Claims** <img width="628" alt="image" src="https://github.com/jatin1510/miro-clone/assets/72184476/1536a650-4898-46e0-8e7c-3c2dc229688a">
+   - Don't forget to add issuer into the `auth.config.js` inside /convex.
 
-2. **Access the application:**
+5. **Prepare the convex functions:**
+    ```sh
+    npx convex dev
+    ```
 
-Open your web browser and navigate to the provided URL (usually `http://localhost:3000`).
+6. **Run the development server:**
 
-3. **Register or log in:**
+    ```sh
+    npm run dev
+    ```
 
-Use the Clerk authentication service to register or log in to your account.
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-4. **Start collaborating:**
+## Features
 
-- Create a new whiteboard or join an existing one.
-- Collaborate with other users in real-time.
-- Utilize the drawing tools to express your ideas, add text, shapes, and more.
+- **Real-time collaboration**: Multiple users can interact on the whiteboard simultaneously.
+- **Interactive UI**: Intuitive and responsive user interface for a seamless experience.
+- **Scalable backend**: Powered by Convex for managing backend logic and data storage.
+- **Live updates**: Instant updates using Liveblocks for real-time synchronization.
 
-### Contributing
+### New Features
 
-Contributions from the community are welcome! If you'd like to be involved, please fork the repository and submit a pull request.
+- **Keyboard Shortcuts**:
+  - **Move Selected Layers**: Use keyboard shortcuts to move selected layers within the Canvas component.
+  - **Duplicate Layers**: Duplicate selected layers with `Ctrl + D`.
+  - **Focus Search Input**: Keyboard shortcut to focus on the search input field.
+  
 
-### License
+- **Enhanced Selection Tool**:
+  - **Improved Layout and Functionality**: Added a duplicate icon in the selection box for better usability.
+  - **Select Fully Inside Rectangle**: Layers are only selected if they are fully inside the selection rectangle.
+  - **Shortcuts for Layer Insertion**: Added keyboard shortcuts for selection and insertion in the toolbar
 
-This project is licensed under the MIT License.
+- **Board Creation Limit**:
+  - User can make only 5 boards within an organization
+
+- **Reset Camera**:
+  - When the user scrolls through the canvas, a button at the right bottom appears through which the user can reset the camera position
+
+- **Color Picker**:
+  - User now has infinite possible combinations of the layer they want. Color picker also has the debouncing technique to prevent the numerous undo/redo actions
+
+- **Export as a PNG**:
+  - Users can now export their board as a PNG image file. This functionality allows users to save their work and share it with others easily.
+
+- **Bug Fixes**:
+  - **Search and Favorite Functionality**: Fixed the search and favorite functionality by using `useSearchParams`.
+
+## Tutorial
+
+This project follows the tutorial by [Code with Antonio](https://www.youtube.com/@codewithantonio). Watch the full tutorial on [YouTube](https://www.youtube.com/watch?v=ADJKbuayubE).
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---

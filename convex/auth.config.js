@@ -1,8 +1,8 @@
 export default {
-  providers: [
-    {
-      domain: "https://mighty-calf-94.clerk.accounts.dev",
-      applicationID: "convex",
-    },
-  ],
+    providers: [
+        {
+            domain: "https://regular-humpback-73.clerk.accounts.dev",
+            applicationID: "convex",
+        },
+    ],
 };
